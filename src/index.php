@@ -3,12 +3,6 @@
 ?>
 <!Doctype HTML>
 <html>
-<head>
-  <meta http-equiv="refresh" content="1" ; url="<?php echo $_SERVER['PHP_SELF']; ?>">
-	<title></title>
-	<link rel="stylesheet" href="css/style.css" type="text/css"/>
-	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-</head>
 
 
 <body>
