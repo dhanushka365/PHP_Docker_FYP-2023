@@ -1,6 +1,12 @@
 <?php 
 		include('connect/connection.php');
 ?>
+<?php 
+session_start();
+
+if (isset($_SESSION['id']) && isset($_SESSION['user_name'])) {
+
+ ?>
 <!Doctype HTML>
 <html>
 
@@ -23,6 +29,7 @@
         <a href="#" class="icon-a"><i class="fa fa-tasks icons"></i> &nbsp;&nbsp;Scheduling</a>
         <a href="#" class="icon-a"><i class="fa fa-user icons"></i> &nbsp;&nbsp;Forecasting</a>
         <a href="#" class="icon-a"><i class="fa fa-list-alt icons"></i> &nbsp;&nbsp;Tasks</a>
+        <a href="logout.php" class="icon-a"><i class="fa fa-list-alt icons"></i> &nbsp;&nbsp;Logout</a>
     </div>
     <div id="main">
 
@@ -36,7 +43,7 @@
                 <div class="profile">
 
                     <img src="images/approved-profile-icon.png" class="pro-img" />
-                    <p>Pasindu Uduwela <span>Software Engineer</span></p>
+                    <p><?php echo $_SESSION['name']; ?> <span>Software Engineer</span></p>
                 </div>
             </div>
             <div class="clearfix"></div>
@@ -199,4 +206,9 @@
 </body>
 
 
-</html>
+</html><?php 
+}else{
+     header("Location: index.php");
+     exit();
+}
+ ?>
