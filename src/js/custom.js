@@ -2,7 +2,7 @@ let hoistedValue = 0;
 
 function updateChart(){
     async function fetchData(){
-        const url = 'http://localhost/SLEFML/js/Actual.json'
+        const url = 'http://localhost:9000/js/data.json'
         const response = await fetch(url);
         const datapoints = await response.json();
         console.log(datapoints)
@@ -10,7 +10,6 @@ function updateChart(){
     };
     fetchData().then(datpoints =>{
         const date = datpoints.map((date ,index)=>{
-            
             return date.Date;
         });
         //console.log(month)
@@ -42,6 +41,7 @@ function updateChart(){
 };
 setInterval(updateChart,700)
 const ctx = document.getElementById('canvas').getContext('2d');
+canvas.height = 55;
 const myChart = new Chart(ctx, {
     type: 'line',
     data: {

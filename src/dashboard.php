@@ -11,7 +11,7 @@ if (isset($_SESSION['id']) && isset($_SESSION['user_name'])) {
 <html>
 
 <head>
-    <meta http-equiv="refresh" content="1" ; url="<?php echo $_SERVER['PHP_SELF']; ?>">
+    <!-- <meta http-equiv="refresh" content="10" ; url="<?php echo $_SERVER['PHP_SELF']; ?>"> -->
     <title></title>
     <link rel="stylesheet" href="css/style.css" type="text/css" />
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
@@ -147,7 +147,7 @@ if (isset($_SESSION['id']) && isset($_SESSION['user_name'])) {
         <div class="col-div-4">
             <div class="box-4">
                 <div class="content-box">
-                    <p>Total Sale <span>Sell All</span></p>
+                    <p>Total Energy <span>Sell All</span></p>
 
                     <div class="circle-wrap">
                         <div class="circle">
@@ -157,7 +157,7 @@ if (isset($_SESSION['id']) && isset($_SESSION['user_name'])) {
                             <div class="mask half">
                                 <div class="fill"></div>
                             </div>
-                            <div class="inside-circle"> 70% </div>
+                            <div class="inside-circle"> 7MW </div>
                         </div>
                     </div>
                 </div>
@@ -168,15 +168,21 @@ if (isset($_SESSION['id']) && isset($_SESSION['user_name'])) {
         <br /><br />
         <div class="col-div-10">
             <div class="box-8">
-                <div class="content-box">
-
-
+                <!-- <div class="content-box"> -->
+                <!-- <div class="container">
+                    <h1>Live Energy consumption and Forcasting</h1> -->
+                <div>
+                    <canvas id="canvas"></canvas>
+                    <button onclick="updateChart()">Fetch</button>
                 </div>
             </div>
         </div>
     </div>
+    </div>
+    </div>
 
-
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/chart.js@3.8.0/dist/chart.min.js"></script>
+    <script type="text/javascript" src="js/custom.js"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <script>
     $(".nav").click(function() {

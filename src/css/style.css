@@ -6,6 +6,10 @@ body{
 	font-family: system-ui;
 }
 
+#canvas{
+  width: 100%;
+
+}
 
 .clearfix{
 	clear: both;
@@ -142,7 +146,7 @@ body{
 .box-8, .box-4{
 	width: 95%;
 	background-color: #272c4a;
-	height: 330px;
+	height: 430px;
 	
 }
 .nav2{
