@@ -41,7 +41,7 @@ function updateChart(){
 };
 setInterval(updateChart,700)
 const ctx = document.getElementById('canvas').getContext('2d');
-canvas.height = 55;
+
 const myChart = new Chart(ctx, {
     type: 'line',
     data: {

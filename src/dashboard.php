@@ -23,10 +23,10 @@ if (isset($_SESSION['id']) && isset($_SESSION['user_name'])) {
     <div id="mySidenav" class="sidenav">
         <p class="logo"><span>E</span>LECCARE-0.1</p>
         <a href="index.php" class="icon-a"><i class="fa fa-dashboard icons"></i> &nbsp;&nbsp;Dashboard</a>
-        <a href="#" class="icon-a"><i class="fa fa-users icons"></i> &nbsp;&nbsp;Users</a>
-        <a href="#" class="icon-a"><i class="fa fa-list icons"></i> &nbsp;&nbsp;Devices</a>
+        <a href="relaycontrol.php" class="icon-a"><i class="fa fa-users icons"></i> &nbsp;&nbsp;Users</a>
+        <a href="relay.php" class="icon-a"><i class="fa fa-list icons"></i> &nbsp;&nbsp;Devices</a>
         <a href="device_details.php" class="icon-a"><i class="fa fa-shopping-bag icons"></i> &nbsp;&nbsp;Details</a>
-        <a href="#" class="icon-a"><i class="fa fa-tasks icons"></i> &nbsp;&nbsp;Scheduling</a>
+        <a href="forecaste.php" class="icon-a"><i class="fa fa-tasks icons"></i> &nbsp;&nbsp;Scheduling</a>
         <a href="#" class="icon-a"><i class="fa fa-user icons"></i> &nbsp;&nbsp;Forecasting</a>
         <a href="#" class="icon-a"><i class="fa fa-list-alt icons"></i> &nbsp;&nbsp;Tasks</a>
         <a href="logout.php" class="icon-a"><i class="fa fa-list-alt icons"></i> &nbsp;&nbsp;Logout</a>
@@ -148,35 +148,48 @@ if (isset($_SESSION['id']) && isset($_SESSION['user_name'])) {
             <div class="box-4">
                 <div class="content-box">
                     <p>Total Energy <span>Sell All</span></p>
-
                     <div class="circle-wrap">
                         <div class="circle">
                             <div class="mask full">
-                                <div class="fill"></div>
+                                <div class="fill" style="transform: rotate(<?php echo $fillRotation; ?>deg);"></div>
                             </div>
                             <div class="mask half">
-                                <div class="fill"></div>
+                                <div class="fill" style="transform: rotate(<?php echo $fillRotation; ?>deg);"></div>
                             </div>
-                            <div class="inside-circle"> 7MW </div>
+                            <div class="inside-circle">
+                                <?php
+                        // PHP code starts here
+                        $servername = "mysql_db";
+                        $username = "root";
+                        $password = "root";
+                        $database = "eleccare";
+
+                        $connection = new mysqli($servername, $username, $password, $database);
+
+                        if ($connection->connect_error) {
+                            die("connect failed:" . $connection->connect_error);
+                        }
+
+                        $sql = "SELECT energy FROM elec_usage ORDER BY date DESC, time DESC LIMIT 1";
+                        $result = $connection->query($sql);
+
+                        if (!$result) {
+                            die("Invalid query:" . $connection->error);
+                        }
+
+                        while ($row = $result->fetch_assoc()) {
+                            $energy = $row["energy"];
+                            $fillRotation = ($energy / 100) * 180; // Adjust the range based on your needs
+                            echo '<span style="font-size: 20px;">' . $energy . ' MW</span><br>';
+                        }
+                        ?>
+                            </div>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
 
-        <div class="clearfix"></div>
-        <br /><br />
-        <div class="col-div-10">
-            <div class="box-8">
-                <!-- <div class="content-box"> -->
-                <!-- <div class="container">
-                    <h1>Live Energy consumption and Forcasting</h1> -->
-                <div>
-                    <canvas id="canvas"></canvas>
-                    <button onclick="updateChart()">Fetch</button>
-                </div>
-            </div>
-        </div>
     </div>
     </div>
     </div>
